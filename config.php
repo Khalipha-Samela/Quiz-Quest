@@ -7,7 +7,7 @@ define('DB_PASS', '');
 define('DB_NAME', 'quiz_quest');
 
 // Create database connection
-$conn = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
+$conn = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME, DB_PORT);
 
 // Check connection
 if ($conn->connect_error) {
