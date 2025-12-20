@@ -1,0 +1,6 @@
+kind: wasmer.io/App.v0
+name: quizquest
+owner: khalipha-samela
+package: sha256:cdb1026fc5771b382b4f5cac197fcae3c9dd69b8771a3db75d7a551c1bc83ba5
+scaling:
+  mode: single_concurrency
