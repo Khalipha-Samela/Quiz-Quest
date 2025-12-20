@@ -1,29 +1,57 @@
 <?php
+// Database configuration
+define('DB_HOST', 'localhost');
+define('DB_USER', 'root');
+define('DB_PASS', '');
+define('DB_NAME', 'quiz_quest');
 
-// Load environment variables
-$DB_HOST = getenv('DB_HOST');
-$DB_USER = getenv('DB_USER');
-$DB_PASS = getenv('DB_PASS');
-$DB_NAME = getenv('DB_NAME');
+// Create database connection
+$conn = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
 
-// Exit if variables are missing
-if (!$DB_HOST || !$DB_USER || !$DB_NAME) {
-    die("Configuration error: Missing environment variables.");
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
 }
 
-// Create connection (PDO is more secure)
-try {
-    $dsn = "mysql:host=$DB_HOST;dbname=$DB_NAME;charset=utf8mb4";
+// Set charset
+$conn->set_charset("utf8mb4");
 
-    $pdo = new PDO($dsn, $DB_USER, $DB_PASS, [
-        PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,  
-        PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,  
-        PDO::ATTR_EMULATE_PREPARES => false,
+// Helper function to execute prepared statements
+function executeQuery($sql, $params = []) {
+    global $conn;
+    $stmt = $conn->prepare($sql);
+    
+    if (!empty($params)) {
+        $types = str_repeat('s', count($params));
+        $stmt->bind_param($types, ...$params);
+    }
+    
+    $stmt->execute();
+    return $stmt;
+}
+
+function validateRequired($data, $fields) {
+    foreach ($fields as $field) {
+        if (!isset($data[$field]) || empty(trim($data[$field]))) {
+            handleError("$field is required");
+        }
+    }
+}
+
+function handleError($message, $code = 400) {
+    http_response_code($code);
+    echo json_encode(['success' => false, 'message' => $message]);
+    exit;
+}
+
+function successResponse($data = [], $message = '') {
+    echo json_encode([
+        'success' => true,
+        'message' => $message,
+        'data' => $data
     ]);
-
-} catch (PDOException $e) {
-    error_log($e->getMessage());
-    die("Database connection failed.");
+    exit;
 }
+
 
 ?>
