@@ -1,4 +1,4 @@
-CREATE DATABASE IF NOT EXISTS quiz_quest
+CREATE DATABASE quiz_quest
 CHARACTER SET utf8mb4
 COLLATE utf8mb4_general_ci;
 
