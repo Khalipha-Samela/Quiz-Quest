@@ -1,9 +1,9 @@
 <?php
 // Database configuration
-define('DB_HOST', 'localhost');
-define('DB_USER', 'root');
-define('DB_PASS', '');
-define('DB_NAME', 'quiz_quest');
+define('DB_HOST', 'sql107.infinityfree.com');
+define('DB_USER', 'if0_40458721');
+define('DB_PASS', 'Khaliphawise20');
+define('DB_NAME', 'if0_40458721_quiz_quest');
 
 // Create database connection
 $conn = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
