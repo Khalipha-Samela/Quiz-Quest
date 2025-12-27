@@ -2,11 +2,12 @@
 // Database configuration
 define('DB_HOST', 'db.fr-pari1.bengt.wasmernet.com');
 define('DB_USER', 'ff2bd29b749e8000ae6c62ba0c34');
+define('DB_PORT', 10272);
 define('DB_PASS', '0694ff2b-d29b-75d4-8000-3b4b7595f3ff');
 define('DB_NAME', 'dbbLGHe47dU9vFxGVcnLNq68');
 
 // Create database connection
-$conn = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
+$conn = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME, DB_PORT);
 
 // Check connection
 if ($conn->connect_error) {
