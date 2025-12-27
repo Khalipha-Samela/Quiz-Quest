@@ -1,13 +1,12 @@
 <?php
 // Database configuration
-define('DB_HOST', 'db.fr-pari1.bengt.wasmernet.com');
-define('DB_USER', '6f4129c67553800093e523c20a44');
-define('DB_PORT', '10272');
-define('DB_PASS', '06946f41-29c6-76ef-8000-328b8e5266dc');
+define('DB_HOST', 'localhost');
+define('DB_USER', 'root');
+define('DB_PASS', '');
 define('DB_NAME', 'quiz_quest');
 
 // Create database connection
-$conn = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME, DB_PORT);
+$conn = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
 
 // Check connection
 if ($conn->connect_error) {
